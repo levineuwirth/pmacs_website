@@ -1,10 +1,3 @@
-Scope: this MIT license applies to everything in this repository, the
-pmacs.io website: the generator, its tests, templates, stylesheets, script,
-star catalog, pages and documents. It does not apply to the third-party
-material THIRD-PARTY.md lists (the fonts, under the SIL Open Font License),
-nor to the pmacs documents the build renders from pmacs's repository, which
-are pmacs's and under its own license. More specific notices take precedence.
-
 MIT License
 
 Copyright (c) 2026 Levi Neuwirth
