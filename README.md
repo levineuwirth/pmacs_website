@@ -83,6 +83,7 @@ contributions belong in [pmacs](https://github.com/levineuwirth/pmacs).
 
 ## License
 
-The site's code and content are not yet licensed; the owner will choose.
-The fonts are under the SIL Open Font License; `THIRD-PARTY.md` has their
-provenance.
+[MIT](LICENSE), as levineuwirth.org's code is. That covers everything in
+this repository except the fonts, which are under the SIL Open Font
+License (`THIRD-PARTY.md` has their provenance). The pmacs documents the
+build renders are pmacs's, under pmacs's license.

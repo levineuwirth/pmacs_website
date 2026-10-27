@@ -1,5 +1,7 @@
 # Third-party material
 
+Everything in this repository is under `LICENSE` (MIT) except what follows.
+
 ## Fonts
 
 All three families are under the SIL Open Font License 1.1, whose text for

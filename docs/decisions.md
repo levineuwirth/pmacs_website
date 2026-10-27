@@ -42,3 +42,9 @@ build. If it uses threads, browsers require cross-origin isolation (the
 `Cross-Origin-Opener-Policy` and `Cross-Origin-Embedder-Policy` headers),
 which limit what a page may embed. So it gets a route of its own with its
 own headers, and the rest of the site is untouched.
+
+**D9 (2026-10-27). The license is MIT, as levineuwirth.org's code is.** It
+covers everything in this repository: code, templates, styles, the star
+catalog, the pages and these documents. The exceptions are the third-party
+fonts, under the SIL Open Font License, and the pmacs documents the build
+renders, which stay under pmacs's license.
