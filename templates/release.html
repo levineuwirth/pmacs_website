@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}{{ note.title }} &middot; {{ site.title }}{% endblock %}
+{% block register %}platform{% endblock %}
+{% block header %}
+<header class="plain">{% include "nav.html" %}</header>
+{% endblock %}
+{% block main %}
+<div class="wrap release">
+  <p class="label"><a href="/history/">History</a>{% if note.date %} &middot; {{ note.date }}{% endif %}{% if note.release_page %} &middot; <a href="{{ note.release_page }}">downloads</a>{% endif %}</p>
+  <article class="prose">
+    {{ note.html|safe }}
+  </article>
+</div>
+{% endblock %}

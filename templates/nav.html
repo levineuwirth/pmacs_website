@@ -1,0 +1,8 @@
+<nav class="site-nav" aria-label="Site">
+  <a class="home" href="/">pmacs</a>
+  <ul>
+    {%- for item in site.nav %}
+    <li><a href="{{ item.href }}"{% if item.current %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+    {%- endfor %}
+  </ul>
+</nav>

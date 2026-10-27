@@ -1,0 +1,264 @@
+/* site.css — pmacs.io.
+ *
+ * One rule governs the palette: color only overhead. The vault's turquoise
+ * and gold are the only color; everything under them is the stone and ink
+ * of levineuwirth.org. Three ceilings, set on <html> as data-ceiling:
+ * night (no attribute, the default), day, and grime, before the cleaning. */
+
+@font-face { font-family: "Spectral"; src: url("../fonts/spectral-regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Spectral"; src: url("../fonts/spectral-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+@font-face { font-family: "Spectral"; src: url("../fonts/spectral-semibold.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Spectral"; src: url("../fonts/spectral-semibold-italic.woff2") format("woff2"); font-weight: 600; font-style: italic; font-display: swap; }
+@font-face { font-family: "Fira Sans"; src: url("../fonts/fira-sans-regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Fira Sans"; src: url("../fonts/fira-sans-semibold.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("../fonts/jetbrains-mono-regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("../fonts/jetbrains-mono-italic.woff2") format("woff2"); font-weight: 400; font-style: italic; font-display: swap; }
+
+/* ---------- Tokens ---------- */
+
+:root {
+  --stone: #101413; --stone-2: #171c1b; --ink: #d6d1c7; --ink-2: #aaa59c; --ink-3: #8c877f; --rule: #2a302f;
+  --vault-edge: #05181b; --vault: #0b2e33; --vault-crown: #123e44;
+  --gold: #d8b660; --gold-ink: #d8b660; --star: #e8dab4; --glow: #fff1c9; --grime: #2a1e14; --on-vault: #ece3cf;
+  --halo-a: .58; --halo-scale: 1; --board-a: .55;
+  --font-read: "Spectral", "Georgia", "Times New Roman", serif;
+  --font-way: "Fira Sans", "Helvetica Neue", "Arial", sans-serif;
+  --font-mono: "JetBrains Mono", "Menlo", "Consolas", monospace;
+  --measure: 38rem;
+  color-scheme: dark;
+}
+:root[data-ceiling="day"] {
+  --stone: #faf8f4; --stone-2: #f2f0eb; --ink: #1a1a1a; --ink-2: #4f4b45; --ink-3: #6e6a64; --rule: #d6d0c6;
+  --vault-edge: #1b555a; --vault: #2d777d; --vault-crown: #3e8d93;
+  --gold: #dcbb6a; --gold-ink: #7a5c1c; --star: #f4e8c8; --glow: #fff0c8; --grime: #3b2b1d; --on-vault: #f3ead6;
+  --halo-a: .26; --halo-scale: .55; --board-a: .32;
+  color-scheme: light;
+}
+/* Before the cleaning: the boards as they were until the 1990s, with no lights. */
+:root[data-ceiling="grime"] {
+  --stone: #1b1510; --stone-2: #231b14; --ink: #e3d0a8; --ink-2: #c7b089; --ink-3: #a8926c; --rule: #3a2e23;
+  --vault-edge: #140f0a; --vault: #2b2117; --vault-crown: #36291c;
+  --gold: #a08452; --gold-ink: #cfae6c; --star: #9d8a66; --glow: #9d8a66; --grime: #0d0906; --on-vault: #d9c7a0;
+  --halo-a: 0; --halo-scale: 1; --board-a: .55;
+  color-scheme: dark;
+}
+
+/* ---------- Base ---------- */
+
+* { box-sizing: border-box; }
+html { background: var(--stone); }
+body {
+  margin: 0; background: var(--stone); color: var(--ink);
+  font-family: var(--font-read); font-size: 1.125rem; line-height: 1.6;
+  font-variant-ligatures: common-ligatures; font-variant-numeric: oldstyle-nums;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration-color: var(--ink-3); text-underline-offset: .18em; text-decoration-thickness: 1px; }
+a:hover { text-decoration-color: currentColor; }
+:focus-visible { outline: 2px solid var(--gold-ink); outline-offset: 3px; }
+.wrap {
+  max-width: 74rem; margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.skip { position: absolute; left: -9999px; }
+.skip:focus { left: 16px; top: 16px; z-index: 10; padding: 8px 12px; background: var(--stone); }
+.label { font: 600 .72rem/1.3 var(--font-way); letter-spacing: .16em; text-transform: uppercase; color: var(--ink-3); margin: 0; }
+.nw { white-space: nowrap; }
+
+/* ---------- Navigation ---------- */
+
+.site-nav {
+  display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px;
+  font-family: var(--font-way); font-weight: 600; font-size: .74rem; letter-spacing: .16em; text-transform: uppercase;
+}
+.site-nav a { text-decoration: none; }
+.site-nav a[aria-current="page"] { text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: .5em; }
+.site-nav .home { font-family: var(--font-read); font-weight: 400; font-size: 1.2rem; letter-spacing: 0; text-transform: none; color: var(--gold); }
+.site-nav ul { display: flex; flex-wrap: wrap; gap: 6px 22px; list-style: none; margin: 0; padding: 0; }
+.plain .site-nav .home { color: var(--gold-ink); }
+
+/* ---------- The sky (drawn by src/sky.rs) ---------- */
+
+svg.sky { display: block; }
+.sky .stop-edge { stop-color: var(--vault-edge); }
+.sky .stop-crown { stop-color: var(--vault-crown); }
+.sky .stop-halo { stop-color: var(--glow); stop-opacity: var(--halo-a); }
+.sky .stop-halo-out { stop-color: var(--glow); stop-opacity: 0; }
+.sky .stop-clear { stop-color: var(--vault-edge); stop-opacity: .8; }
+.sky .stop-clear-out { stop-color: var(--vault-edge); stop-opacity: 0; }
+.sky .boards { fill: none; stroke: var(--vault-edge); stroke-opacity: var(--board-a); stroke-width: 1; }
+.sky .field, .sky .stars { fill: var(--star); }
+.sky .band-fill { fill: none; stroke: var(--gold); stroke-opacity: .16; stroke-width: 9; }
+.sky .band-line, .sky .ticks { fill: none; stroke: var(--gold); stroke-opacity: .85; stroke-width: .9; }
+.sky .tick-labels { fill: var(--gold); fill-opacity: .85; font: 600 11px var(--font-way); text-anchor: middle; dominant-baseline: middle; }
+.sky .figure { fill: none; stroke: var(--gold); stroke-opacity: .62; stroke-width: 1.05; stroke-linecap: round; }
+.sky .figure.dim { stroke-opacity: .18; }
+.sky .figure.picked { stroke-opacity: .92; stroke-width: 1.4; }
+.sky .light .core { fill: var(--glow); }
+.sky .soot { fill: var(--grime); fill-opacity: .7; }
+.sky .patch-focus { fill: none; stroke: none; }
+.sky .patch:focus-visible { outline: none; }
+.sky .patch:focus-visible .patch-focus { stroke: var(--gold); stroke-width: 2; }
+.sky .ring { fill: none; stroke: var(--gold); stroke-width: 1.4; }
+.sky .ring-dot { fill: var(--gold); stroke: none; }
+:root[data-ceiling="grime"] .sky .bands,
+:root[data-ceiling="grime"] .sky .figures,
+:root[data-ceiling="grime"] .sky .ring { opacity: .55; }
+:root[data-ceiling="grime"] .sky .field { opacity: .55; }
+
+/* The lights: at night they come on in turn; by day and night they twinkle;
+   before the cleaning there are none, as there were none from 1945 to the
+   restoration. Each star's timing is set by the build in --t, --d, --e, --p. */
+.sky .light { animation: lights-on .35s ease-out calc(var(--t) * 1.5s) both; }
+.sky .halo { transform-box: fill-box; transform-origin: center; animation: twinkle var(--d) ease-in-out var(--p) infinite; }
+.sky .core { animation: flicker var(--e) ease-in-out var(--p) infinite; }
+:root[data-ceiling] .sky .light { animation: none; }
+:root[data-ceiling="grime"] .sky .halo { display: none; }
+:root[data-ceiling="grime"] .sky .light .core { fill: var(--star); animation: none; }
+@keyframes lights-on { from { opacity: 0; } to { opacity: 1; } }
+@keyframes twinkle {
+  0%, 100% { opacity: 1; transform: scale(var(--halo-scale)); }
+  50% { opacity: var(--lo); transform: scale(calc(var(--halo-scale) * .8)); }
+}
+@keyframes flicker { 0%, 100% { opacity: 1; } 50% { opacity: .8; } }
+@media (prefers-reduced-motion: reduce) {
+  .sky .light, .sky .halo, .sky .core { animation: none; }
+  .sky .halo { transform: scale(var(--halo-scale)); }
+}
+
+/* ---------- The concourse: the landing ---------- */
+
+.vault {
+  position: relative; width: 100%; max-width: 100%;
+  aspect-ratio: 16 / 7; min-height: 400px; max-height: 700px;
+  background: var(--vault); overflow: hidden; isolation: isolate;
+}
+.vault svg.sky { position: absolute; inset: 0; width: 100%; height: 100%; }
+.vault-ui {
+  position: absolute; inset: 0; z-index: 1;
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding-block: 16px clamp(22px, 4.6vw, 68px);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  pointer-events: none; color: var(--on-vault);
+}
+.vault-ui a { pointer-events: auto; }
+.hero-text { display: grid; justify-items: center; gap: .5rem; text-align: center; }
+.wordmark {
+  margin: 0; font-family: var(--font-read); font-weight: 400;
+  font-size: clamp(4.2rem, 10.5vw, 8.75rem); line-height: .82; letter-spacing: -.005em;
+  color: var(--gold); text-shadow: 0 1px 2px var(--vault-edge);
+}
+.tagline {
+  margin: 0; max-width: 34rem; font-style: italic; font-size: clamp(1rem, 1.55vw, 1.28rem); line-height: 1.45;
+  color: var(--on-vault); text-wrap: balance;
+}
+.cornice { height: 9px; background: var(--stone-2); border-top: 2px solid var(--gold); border-bottom: 1px solid var(--rule); }
+
+.booth {
+  display: grid; grid-template-columns: minmax(0, 12rem) minmax(0, 1fr);
+  gap: 20px 40px; align-items: start; padding-block: 36px 44px; border-bottom: 1px solid var(--rule);
+}
+.release-num { font: 600 3.6rem/1 var(--font-read); letter-spacing: -.01em; margin: 0 0 6px; }
+.release-date { margin-top: 4px; font-weight: 400; font-variant-numeric: tabular-nums; }
+.booth-main { max-width: 36rem; }
+.booth-main p { margin: 0 0 18px; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn {
+  font: 600 .76rem/1 var(--font-way); letter-spacing: .12em; text-transform: uppercase; text-decoration: none;
+  padding: 12px 16px; border: 1px solid var(--ink); color: var(--ink);
+}
+.btn.primary { background: var(--ink); color: var(--stone); }
+.landing-prose { padding-block: 36px 56px; }
+
+/* ---------- Passages: informational pages ---------- */
+
+.strip { position: relative; height: 200px; overflow: hidden; background: var(--vault); }
+.strip svg.sky { position: absolute; inset: 0; width: 100%; height: 100%; }
+.passage-body { display: grid; grid-template-columns: minmax(0, var(--measure)) minmax(0, 13rem); gap: 12px 48px; padding-block: 40px 64px; }
+.passage-main h1 { font: 600 2.2rem/1.15 var(--font-way); margin: 8px 0 22px; text-wrap: balance; }
+.side { padding-top: 6.4rem; font-size: .92rem; line-height: 1.5; color: var(--ink-3); }
+/* The opening paragraph: a drop cap and a small-capital first line, as on levineuwirth.org. */
+.opening > p:first-child::first-letter { float: left; font-size: 3.55em; line-height: .78; padding: .07em .08em 0 0; }
+.opening > p:first-child::first-line { font-variant-caps: small-caps; letter-spacing: .04em; }
+
+/* ---------- Prose ---------- */
+
+.prose { max-width: var(--measure); min-width: 0; }
+.prose h1, .prose h2, .prose h3, .prose h4 { font-family: var(--font-way); font-weight: 600; line-height: 1.25; text-wrap: balance; }
+.prose h1 { font-size: 2rem; margin: 0 0 .8em; }
+.prose h2 { font-size: 1.4rem; margin: 2em 0 .6em; }
+.prose h3 { font-size: 1.12rem; margin: 1.6em 0 .5em; }
+.prose p, .prose ul, .prose ol { margin: 0 0 1em; }
+.prose code { font-family: var(--font-mono); font-size: .84em; font-variant-ligatures: none; }
+.prose pre {
+  font-family: var(--font-mono); font-size: .84rem; line-height: 1.55; margin: 0 0 1.2em;
+  padding: 14px 16px; background: var(--stone-2); border: 1px solid var(--rule); overflow-x: auto;
+}
+.prose pre code { font-size: inherit; }
+.prose table { display: block; overflow-x: auto; border-collapse: collapse; margin: 0 0 1.2em; font-size: .92rem; }
+.prose th, .prose td { border-bottom: 1px solid var(--rule); padding: 6px 12px 6px 0; text-align: left; vertical-align: top; }
+.prose th { font: 600 .8rem/1.4 var(--font-way); letter-spacing: .04em; }
+.prose blockquote { margin: 0 0 1em; padding-left: 1em; border-left: 1px solid var(--rule); color: var(--ink-2); }
+.prose hr { border: 0; text-align: center; margin: 2em 0; }
+.prose hr::after { content: "\2726"; color: var(--gold-ink); }
+.prose img { max-width: 100%; }
+
+/* ---------- Platforms: docs and history ---------- */
+
+.plain {
+  padding-block: 16px; border-bottom: 1px solid var(--rule);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.docs { display: grid; grid-template-columns: minmax(0, 14rem) minmax(0, 1fr); gap: 24px 48px; padding-block: 32px 64px; }
+.docs-index { font-family: var(--font-way); font-size: .9rem; line-height: 1.45; }
+.docs-index ul { list-style: none; margin: 8px 0 24px; padding: 0; display: grid; gap: 6px; }
+.docs-index a { text-decoration: none; color: var(--ink-2); }
+.docs-index a[aria-current="page"] { color: var(--ink); text-decoration: underline; text-decoration-color: var(--gold-ink); }
+.docs-body { max-width: 46rem; }
+.source { margin-top: 3em; font-family: var(--font-way); font-size: .85rem; color: var(--ink-3); }
+.listing, .release { padding-block: 40px 64px; }
+.listing h1 { font: 600 2.2rem/1.15 var(--font-way); margin: 0 0 16px; }
+.lead { max-width: var(--measure); color: var(--ink-2); margin: 0 0 28px; }
+.releases { list-style: none; margin: 0; padding: 0; max-width: 40rem; }
+.releases li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; padding-block: 12px; border-bottom: 1px solid var(--rule); }
+.releases a { font-family: var(--font-way); font-weight: 600; text-decoration: none; }
+.releases .meta { font-family: var(--font-way); font-size: .85rem; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.release .label { margin-bottom: 20px; }
+.release .label a { text-decoration: none; }
+
+/* ---------- Footer ---------- */
+
+.site-foot { border-top: 1px solid var(--rule); padding-block: 22px 36px; font-family: var(--font-way); font-size: .82rem; color: var(--ink-3); }
+.foot-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 24px; }
+.foot-name { margin: 0; }
+.foot-name a { text-decoration: none; }
+.ceiling { display: none; align-items: center; gap: 0; }
+.js .ceiling { display: inline-flex; }
+.ceiling span { margin-right: 10px; letter-spacing: .12em; text-transform: uppercase; font-size: .72rem; }
+.ceiling button {
+  font: 600 .7rem/1 var(--font-way); letter-spacing: .12em; text-transform: uppercase; cursor: pointer;
+  color: var(--ink-2); background: transparent; border: 1px solid var(--rule); padding: 8px 11px; margin-left: -1px;
+}
+.ceiling button[aria-pressed="true"] { background: var(--ink); color: var(--stone); border-color: var(--ink); }
+
+/* ---------- Narrow screens ---------- */
+
+@media (max-width: 860px) {
+  .booth { grid-template-columns: minmax(0, 1fr); }
+  .docs { grid-template-columns: minmax(0, 1fr); }
+  .passage-body { grid-template-columns: minmax(0, 1fr); }
+  .side { padding-top: 0; }
+}
+@media (max-width: 640px) {
+  .vault { aspect-ratio: auto; height: 540px; min-height: 0; }
+  /* The sky at its own aspect, shifted so Taurus and Orion sit overhead. */
+  .vault svg.sky { width: calc(540px * 16 / 7); left: 50%; transform: translateX(-60%); }
+  .site-nav ul { gap: 4px 14px; font-size: .68rem; }
+}
+@media (max-width: 760px) {
+  /* The strip at its own aspect, shifted toward the page's sign (--focus, set by the build). */
+  .strip svg.sky { width: calc(200px * var(--aspect)); left: 50%; transform: translateX(calc(-1 * clamp(28%, var(--focus, 50%), 72%))); }
+}

@@ -1,0 +1,13 @@
+[package]
+name = "pmacs-site"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.95"
+description = "The generator for pmacs.io"
+publish = false
+
+[dependencies]
+minijinja = { version = "2", features = ["loader"] }
+pulldown-cmark = { version = "0.13", default-features = false, features = ["html"] }
+serde = { version = "1", features = ["derive"] }
+toml = "0.8"

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}History &middot; {{ site.title }}{% endblock %}
+{% block register %}platform{% endblock %}
+{% block header %}
+<header class="plain">{% include "nav.html" %}</header>
+{% endblock %}
+{% block main %}
+<div class="wrap listing">
+  <h1>History</h1>
+  {%- if notes %}
+  <p class="lead">The release notes, kept as they were written.</p>
+  <ul class="releases">
+    {%- for n in notes %}
+    <li>
+      <a href="/history/{{ n.version }}.html">{{ n.title }}</a>
+      <span class="meta">{% if n.date %}{{ n.date }}{% else %}not tagged{% endif %}</span>
+    </li>
+    {%- endfor %}
+  </ul>
+  {%- else %}
+  <p class="lead">This build has no release notes. Build without <code>--no-docs</code> to render them.</p>
+  {%- endif %}
+</div>
+{% endblock %}

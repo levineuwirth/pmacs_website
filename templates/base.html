@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{% block title %}{{ site.title }}{% endblock %}</title>
+<meta name="description" content="{% block description %}{{ site.description }}{% endblock %}">
+<meta name="color-scheme" content="dark light">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/fonts/spectral-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/site.css">
+{# Before first paint: the ceiling a visitor chose, and a flag for the controls only a script can work. #}
+<script>document.documentElement.classList.add("js");try{var c=localStorage.getItem("pmacs-ceiling");if(c==="day"||c==="grime")document.documentElement.dataset.ceiling=c}catch(e){}</script>
+<script src="/js/site.js" defer></script>
+</head>
+<body class="{% block register %}{% endblock %}">
+<a class="skip" href="#main">Skip to the content</a>
+{% block header %}{% endblock %}
+<main id="main">
+{% block main %}{% endblock %}
+</main>
+<footer class="site-foot">
+  <div class="wrap foot-row">
+    <p class="foot-name"><a href="/">pmacs</a> <span>&middot;</span> <a href="{{ site.source }}">this site&rsquo;s source</a></p>
+    <div class="ceiling" role="group" aria-labelledby="ceiling-label">
+      <span id="ceiling-label">Ceiling</span>
+      <button type="button" data-ceiling-choice="night" aria-pressed="true">Night</button>
+      <button type="button" data-ceiling-choice="day" aria-pressed="false">Day</button>
+      <button type="button" data-ceiling-choice="grime" aria-pressed="false">Before the cleaning</button>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

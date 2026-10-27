@@ -1,0 +1,6 @@
+[toolchain]
+# The version pmacs pins, so the two repositories build with one toolchain.
+# Bump with pmacs, deliberately.
+channel = "1.95.0"
+components = ["clippy", "rustfmt"]
+profile = "minimal"

@@ -1,0 +1,127 @@
+# The vault's sky: the winter zodiac of the Grand Central Terminal ceiling,
+# Aquarius to Cancer, with Pegasus, Triangulum and Orion.
+#
+# Positions are J2000 right ascension (hours) and declination (degrees),
+# approximate, with visual magnitude. Right ascension runs left to right,
+# as on a celestial globe and on the ceiling, whose sky is mirrored;
+# `mirror = true` reflects a figure about its own center, which draws
+# Orion the right way round, as the ceiling does.
+
+# patch: the dark patch left uncleaned near Cancer, [ra, dec].
+patch = [8.3, 26.5]
+
+[view]
+ra0 = 20.4          # right ascension at the left edge, hours
+span = 195.0        # degrees of right ascension across the width
+dec-top = 38.0
+dec-bottom = -24.0
+width = 1600.0      # viewBox units; 16:7, the vault's aspect
+height = 700.0
+field-seed = 1913   # the year the terminal opened
+field-count = 9600  # over a wider field, about 2,600 inside the view
+light-seed = 42
+lit-magnitude = 3.6 # stars this bright or brighter are the lit ones
+
+[[constellation]]
+name = "Aquarius"
+stars = [
+  ["eps", 20.795, -9.50, 3.8], ["beta", 21.526, -5.57, 2.9], ["alpha", 22.096, -0.32, 2.95],
+  ["gamma", 22.361, -1.39, 3.8], ["zeta", 22.481, -0.02, 3.6], ["eta", 22.589, -0.12, 4.0],
+  ["pi", 22.421, 1.38, 4.6], ["theta", 22.280, -7.78, 4.2], ["lambda", 22.877, -7.58, 3.7],
+  ["tau", 22.826, -13.59, 4.0], ["delta", 22.911, -15.82, 3.3],
+]
+lines = [
+  ["eps", "beta"], ["beta", "alpha"], ["alpha", "gamma"], ["gamma", "zeta"], ["zeta", "eta"],
+  ["zeta", "pi"], ["alpha", "theta"], ["theta", "lambda"], ["lambda", "tau"], ["tau", "delta"],
+]
+
+[[constellation]]
+name = "Pegasus"
+stars = [
+  ["alpha", 23.079, 15.21, 2.5], ["beta", 23.063, 28.08, 2.4], ["gamma", 0.221, 15.18, 2.8],
+  ["alpheratz", 0.140, 29.09, 2.1], ["eps", 21.736, 9.88, 2.4], ["zeta", 22.691, 10.83, 3.4],
+  ["eta", 22.717, 30.22, 2.9], ["theta", 22.170, 6.20, 3.5],
+]
+lines = [
+  ["alpha", "beta"], ["beta", "alpheratz"], ["alpheratz", "gamma"], ["gamma", "alpha"],
+  ["alpha", "zeta"], ["zeta", "theta"], ["theta", "eps"], ["beta", "eta"],
+]
+
+[[constellation]]
+name = "Pisces"
+stars = [
+  ["gamma", 23.286, 3.28, 3.7], ["kappa", 23.449, 1.26, 4.9], ["lambda", 23.700, 1.78, 4.5],
+  ["iota", 23.666, 5.63, 4.1], ["theta", 23.466, 6.38, 4.3], ["omega", 23.988, 6.86, 4.0],
+  ["delta", 0.811, 7.59, 4.4], ["eps", 1.049, 7.89, 4.3], ["zeta", 1.229, 7.58, 5.2],
+  ["mu", 1.503, 6.14, 4.8], ["nu", 1.690, 5.49, 4.4], ["alpha", 2.034, 2.76, 3.8],
+  ["omicron", 1.757, 9.16, 4.3], ["eta", 1.525, 15.35, 3.6], ["phi", 1.229, 24.58, 4.7],
+  ["upsilon", 1.325, 27.26, 4.8], ["tau", 1.194, 30.09, 4.5],
+]
+lines = [
+  ["gamma", "kappa"], ["kappa", "lambda"], ["lambda", "iota"], ["iota", "theta"], ["theta", "gamma"],
+  ["iota", "omega"], ["omega", "delta"], ["delta", "eps"], ["eps", "zeta"], ["zeta", "mu"],
+  ["mu", "nu"], ["nu", "alpha"], ["alpha", "omicron"], ["omicron", "eta"], ["eta", "phi"],
+  ["phi", "upsilon"], ["upsilon", "tau"],
+]
+
+[[constellation]]
+name = "Aries"
+stars = [
+  ["alpha", 2.120, 23.46, 2.0], ["beta", 1.911, 20.81, 2.6], ["gamma", 1.892, 19.29, 3.9],
+  ["41", 2.833, 27.26, 3.6],
+]
+lines = [["gamma", "beta"], ["beta", "alpha"], ["alpha", "41"]]
+
+[[constellation]]
+name = "Triangulum"
+stars = [["alpha", 1.885, 29.58, 3.4], ["beta", 2.159, 34.99, 3.0], ["gamma", 2.289, 33.85, 4.0]]
+lines = [["alpha", "beta"], ["beta", "gamma"], ["gamma", "alpha"]]
+
+[[constellation]]
+name = "Taurus"
+stars = [
+  ["aldebaran", 4.599, 16.51, 0.9], ["elnath", 5.438, 28.61, 1.65], ["zeta", 5.627, 21.14, 3.0],
+  ["gamma", 4.330, 15.63, 3.6], ["delta", 4.382, 17.54, 3.8], ["eps", 4.477, 19.18, 3.5],
+  ["lambda", 4.011, 12.49, 3.4], ["alcyone", 3.791, 24.11, 2.9], ["atlas", 3.820, 24.05, 3.6],
+  ["electra", 3.747, 24.11, 3.7], ["maia", 3.763, 24.37, 3.9], ["merope", 3.772, 23.95, 4.1],
+  ["taygeta", 3.754, 24.47, 4.3],
+]
+lines = [
+  ["lambda", "gamma"], ["gamma", "delta"], ["delta", "eps"], ["eps", "elnath"],
+  ["gamma", "aldebaran"], ["aldebaran", "zeta"],
+]
+
+[[constellation]]
+name = "Orion"
+mirror = true
+stars = [
+  ["betelgeuse", 5.919, 7.41, 0.5], ["rigel", 5.242, -8.20, 0.1], ["bellatrix", 5.419, 6.35, 1.6],
+  ["saiph", 5.796, -9.67, 2.1], ["alnitak", 5.679, -1.94, 1.8], ["alnilam", 5.604, -1.20, 1.7],
+  ["mintaka", 5.533, -0.30, 2.2], ["meissa", 5.585, 9.93, 3.4],
+]
+lines = [
+  ["meissa", "betelgeuse"], ["meissa", "bellatrix"], ["betelgeuse", "alnitak"], ["bellatrix", "mintaka"],
+  ["mintaka", "alnilam"], ["alnilam", "alnitak"], ["alnitak", "saiph"], ["mintaka", "rigel"],
+]
+
+[[constellation]]
+name = "Gemini"
+stars = [
+  ["castor", 7.577, 31.89, 1.6], ["pollux", 7.755, 28.03, 1.1], ["alhena", 6.629, 16.40, 1.9],
+  ["eps", 6.732, 25.13, 3.0], ["mu", 6.383, 22.51, 2.9], ["eta", 6.248, 22.51, 3.3],
+  ["delta", 7.335, 21.98, 3.5], ["zeta", 7.068, 20.57, 3.9], ["tau", 7.186, 30.25, 4.4],
+  ["iota", 7.429, 27.80, 3.8], ["lambda", 7.301, 16.54, 3.6], ["xi", 6.755, 12.90, 3.4],
+]
+lines = [
+  ["castor", "pollux"], ["castor", "tau"], ["tau", "eps"], ["eps", "mu"], ["mu", "eta"],
+  ["pollux", "iota"], ["iota", "tau"], ["pollux", "delta"], ["delta", "zeta"], ["zeta", "alhena"],
+  ["delta", "lambda"], ["lambda", "xi"],
+]
+
+[[constellation]]
+name = "Cancer"
+stars = [
+  ["alpha", 8.975, 11.86, 4.2], ["beta", 8.275, 9.19, 3.5], ["delta", 8.745, 18.15, 3.9],
+  ["gamma", 8.721, 21.47, 4.7], ["iota", 8.778, 28.76, 4.0],
+]
+lines = [["beta", "delta"], ["delta", "alpha"], ["delta", "gamma"], ["gamma", "iota"]]

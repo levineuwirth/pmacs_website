@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}{{ doc.title }} &middot; pmacs {{ version }}{% endblock %}
+{% block register %}platform{% endblock %}
+{% block header %}
+<header class="plain">{% include "nav.html" %}</header>
+{% endblock %}
+{% block main %}
+<div class="wrap docs">
+  <aside class="docs-index" aria-label="Documents in pmacs {{ version }}">
+    <p class="label">pmacs {{ version }}</p>
+    <ul>
+      {%- for p in index %}
+      <li><a href="/docs/{{ version }}/{{ p.route }}"{% if p.route == doc.route %} aria-current="page"{% endif %}>{{ p.title }}</a></li>
+      {%- endfor %}
+    </ul>
+    {%- if others %}
+    <p class="label">Other releases</p>
+    <ul class="versions">
+      {%- for v in others %}
+      <li><a href="{{ v.href }}">{{ v.version }}</a></li>
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+  </aside>
+  <article class="prose docs-body">
+    {{ doc.html|safe }}
+    <p class="source">From <a href="{{ doc.source }}"><code>{{ doc.path }}</code> at {{ tag }}</a>.</p>
+  </article>
+</div>
+{% endblock %}

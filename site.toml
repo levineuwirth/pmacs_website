@@ -1,0 +1,48 @@
+# The site's identity, navigation and the pmacs repository its docs come from.
+
+title = "pmacs"
+tagline = "Parallel Emacs — a Rust-cored, Lua-scripted editor in the Emacs tradition."
+description = "pmacs is a Rust-cored, Lua-scripted editor in the Emacs tradition."
+url = "https://pmacs.io"
+source = "https://github.com/levineuwirth/pmacs_website"
+
+[[nav]]
+label = "About"
+href = "/architecture/"
+
+[[nav]]
+label = "Docs"
+href = "/docs/"
+
+[[nav]]
+label = "History"
+href = "/history/"
+
+[[nav]]
+label = "Source"
+href = "https://github.com/levineuwirth/pmacs"
+
+[pmacs]
+# Docs are rendered from this repository at every release tag and never
+# edited here. A build clones it, bare and without blobs, into .cache/;
+# `--pmacs <path>` reads a local repository instead.
+repository = "https://github.com/levineuwirth/pmacs.git"
+web = "https://github.com/levineuwirth/pmacs"
+# Every release: tags matching this whose version is plain x.y.z, so
+# release candidates are left out.
+release-pattern = "v*"
+# The documents a release publishes, in the order its index lists them.
+# A path a release does not carry is skipped for that release.
+docs = [
+  "README.md",
+  "docs/getting-started.md",
+  "docs/configuration.md",
+  "docs/keybindings.md",
+  "docs/lua-api.md",
+  "docs/packages.md",
+  "docs/package-author-guide.md",
+  "docs/mcp-for-package-authors.md",
+  "CONTRIBUTING.md",
+]
+# Release notes, read from the newest release.
+releases-dir = "docs/releases"

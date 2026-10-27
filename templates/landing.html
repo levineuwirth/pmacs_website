@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block register %}concourse{% endblock %}
+{% block header %}
+<header class="vault">
+  {{ sky|safe }}
+  <div class="vault-ui">
+    {% include "nav.html" %}
+    <div class="hero-text">
+      <h1 class="wordmark">pmacs</h1>
+      <p class="tagline">{{ site.tagline|keep_hyphenated }}</p>
+    </div>
+  </div>
+</header>
+<div class="cornice"></div>
+{% endblock %}
+{% block main %}
+<div class="wrap">
+  {%- if latest %}
+  <section class="booth" aria-label="Latest release">
+    <div>
+      <p class="release-num">{{ latest.version }}</p>
+      <p class="label">Latest release</p>
+      {%- if latest.date %}
+      <p class="label release-date">{{ latest.date }}</p>
+      {%- endif %}
+    </div>
+    <div class="booth-main">
+      {{ page.booth_html|safe }}
+      <p class="actions">
+        <a class="btn primary" href="{{ latest.download }}">Download {{ latest.version }}</a>
+        <a class="btn" href="{{ latest.docs }}">Read the docs</a>
+      </p>
+    </div>
+  </section>
+  {%- endif %}
+  <div class="prose landing-prose">
+    {{ page.html|safe }}
+  </div>
+</div>
+{% endblock %}

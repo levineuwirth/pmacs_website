@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}{{ page.title }} &middot; {{ site.title }}{% endblock %}
+{% block description %}{{ page.description or site.description }}{% endblock %}
+{% block register %}passage{% endblock %}
+{% block header %}
+<header class="plain">{% include "nav.html" %}</header>
+<div class="strip" style="--focus: {{ focus }}%; --aspect: {{ aspect }}">
+  {{ sky|safe }}
+</div>
+<div class="cornice"></div>
+{% endblock %}
+{% block main %}
+<article class="wrap passage-body">
+  <div class="passage-main">
+    {%- if page.eyebrow %}<p class="label">{{ page.eyebrow }}</p>{% endif %}
+    <h1>{{ page.title }}</h1>
+    <div class="prose opening">
+      {{ page.html|safe }}
+    </div>
+  </div>
+  {%- if page.note %}
+  <aside class="side">{{ page.note }}</aside>
+  {%- endif %}
+</article>
+{% endblock %}

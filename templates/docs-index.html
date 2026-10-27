@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Docs &middot; {{ site.title }}{% endblock %}
+{% block register %}platform{% endblock %}
+{% block header %}
+<header class="plain">{% include "nav.html" %}</header>
+{% endblock %}
+{% block main %}
+<div class="wrap listing">
+  <h1>Docs</h1>
+  {%- if versions %}
+  <p class="lead">Every release carries its own documents. These are those documents, as each release shipped them.</p>
+  <ul class="releases">
+    {%- for v in versions %}
+    <li>
+      <a href="/docs/{{ v.version }}/">pmacs {{ v.version }}</a>
+      <span class="meta">{{ v.date }}{% if loop.first %} &middot; latest{% endif %} &middot; {{ v.pages|length }} documents</span>
+    </li>
+    {%- endfor %}
+  </ul>
+  {%- else %}
+  <p class="lead">This build has no release docs. Build without <code>--no-docs</code> to render them.</p>
+  {%- endif %}
+</div>
+{% endblock %}
