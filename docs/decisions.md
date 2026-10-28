@@ -48,3 +48,12 @@ covers everything in this repository: code, templates, styles, the star
 catalog, the pages and these documents. The exceptions are the third-party
 fonts, under the SIL Open Font License, and the pmacs documents the build
 renders, which stay under pmacs's license.
+
+**D10 (2026-10-28). pmacs.io is served from the owner's VPS, beside
+levineuwirth.org.** It is a static nginx virtual host of its own, so the
+browser frontend's route (D8) can carry its own headers. Deploys go through a
+user that can write only the site's directory, and release archives stay on
+GitHub Releases. Netlify and Cloudflare Pages were considered, and GitHub
+Pages was ruled out because it cannot set D8's headers. The site moves to a
+server of its own if pmacs gains maintainers who need access to it, or a
+package index that needs a running service.
